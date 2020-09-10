@@ -1,4 +1,4 @@
-package cz.ackee.cookbook.viewmodels
+package cz.ackee.cookbook.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

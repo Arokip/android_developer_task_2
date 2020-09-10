@@ -4,5 +4,7 @@
     <string name="action_add_recipe">Add new recipe</string>
     <string name="add_recipe">Přidat recept</string>
     <string name="recipes">Recepty</string>
-    <string name="ackee_logo">Ackee logo</string>
+    <string name="ackee_logo_description">Ackee logo</string>
+    <string name="time_icon_description">time icon</string>
+    <string name="recipe_duration">%1$s min.</string>
 </resources>

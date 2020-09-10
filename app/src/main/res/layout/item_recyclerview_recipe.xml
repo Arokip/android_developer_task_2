@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginTop="@dimen/extra_small_margin"
+    android:layout_marginEnd="@dimen/small_margin"
+    android:layout_marginBottom="@dimen/extra_small_margin"
     android:background="@drawable/item_ripple"
     android:elevation="2dp"
     android:orientation="vertical">
@@ -16,24 +19,66 @@
 
         <ImageView
             android:id="@+id/ackeeLogo"
-            android:layout_width="0dp"
+            android:layout_width="96dp"
             android:layout_height="0dp"
-            android:src="@drawable/img_small"
             android:background="@drawable/bg_image_white"
-            android:contentDescription="@string/ackee_logo"
+            android:contentDescription="@string/ackee_logo_description"
             android:padding="4dp"
+            android:src="@drawable/img_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text"
-            android:text="a\na\na\na"
+            android:id="@+id/recipeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/margin"
+            android:gravity="start"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/recipeScore"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ackeeLogo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/recipeScore"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toTopOf="@id/recipeDuration"
+            app:layout_constraintStart_toEndOf="@id/ackeeLogo"
+            app:layout_constraintTop_toBottomOf="@id/recipeName" />
+
+        <ImageView
+            android:id="@+id/timeIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:contentDescription="@string/time_icon_description"
+            android:src="@drawable/ic_time"
+            app:layout_constraintBottom_toBottomOf="@id/recipeDuration"
+            app:layout_constraintStart_toEndOf="@id/ackeeLogo"
+            app:layout_constraintTop_toTopOf="@id/recipeDuration" />
+
+        <TextView
+            android:id="@+id/recipeDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:gravity="start"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/timeIcon"
+            app:layout_constraintTop_toBottomOf="@id/recipeScore" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
