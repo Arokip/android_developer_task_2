@@ -13,13 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import cz.ackee.cookbook.R
 import cz.ackee.cookbook.view.RecipesRecyclerViewAdapter
-import cz.ackee.cookbook.viewmodel.RecipeListModel
+import cz.ackee.cookbook.viewmodel.RecipeListViewModel
 import kotlinx.android.synthetic.main.activity_recipe_list.*
 
 class RecipeListActivity : AppCompatActivity(),
         RecipesRecyclerViewAdapter.ItemClickListener {
 
-    private lateinit var recipeListModel: RecipeListModel
+    private lateinit var recipeListViewModel: RecipeListViewModel
 
     private lateinit var adapter: RecipesRecyclerViewAdapter
 
@@ -32,7 +32,7 @@ class RecipeListActivity : AppCompatActivity(),
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        recipeListModel = ViewModelProvider(this).get(RecipeListModel::class.java)
+        recipeListViewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
 
         adapter = RecipesRecyclerViewAdapter()
         adapter.setClickListener(this)
@@ -41,9 +41,9 @@ class RecipeListActivity : AppCompatActivity(),
         recipeRecyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.adapter = adapter
 
-        recipeListModel.getAllRecipes()
+        recipeListViewModel.getAllRecipes()
 
-        recipeListModel.recipes.observe(this, Observer { recipes ->
+        recipeListViewModel.recipes.observe(this, Observer { recipes ->
 
             when {
                 recipes == null -> {
@@ -76,9 +76,8 @@ class RecipeListActivity : AppCompatActivity(),
     }
 
     override fun onItemClick(view: View, position: Int) {
-        val intent = Intent(this@RecipeListActivity, RecipeDetailActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        val id = recipeListViewModel.recipes.value?.get(position)?.id
+        RecipeDetailActivity.start(this, id)
     }
 
 }

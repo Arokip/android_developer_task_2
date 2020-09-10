@@ -9,6 +9,8 @@ class Repository {
 
     suspend fun getAllRecipes() = api.getAllRecipes()
 
+    suspend fun getRecipeDetailById(id: String) = api.getRecipeDetailById(id)
+
     companion object {
         const val cookbookUrl = "https://cookbook.ack.ee/api/v1/"
     }

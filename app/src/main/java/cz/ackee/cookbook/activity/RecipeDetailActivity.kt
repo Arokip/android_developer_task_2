@@ -1,17 +1,25 @@
 package cz.ackee.cookbook.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import cz.ackee.cookbook.R
+import cz.ackee.cookbook.viewmodel.RecipeDetailViewModel
 
 class RecipeDetailActivity : AppCompatActivity() {
+
+    private lateinit var recipeDetailViewModel: RecipeDetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,6 +36,20 @@ class RecipeDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        recipeDetailViewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
+
+        val recipeId = intent.getStringExtra(idString)
+
+        if (recipeId == null) {
+            finish()
+            Toast.makeText(this, recipeDetailViewModel.errorMessage, Toast.LENGTH_LONG).show()
+        } else {
+            recipeDetailViewModel.getRecipeDetailById(recipeId)
+        }
+
+        recipeDetailViewModel.recipeDetail.observe(this, Observer { recipeDetail ->
+            // TODO: set ui
+        })
 
     }
 
@@ -51,5 +73,18 @@ class RecipeDetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    companion object {
+
+        const val idString = "ID"
+
+        fun start(context: Context, id: String?) {
+            val intent = Intent(context, RecipeDetailActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra(idString, id)
+            context.startActivity(intent)
+        }
+
     }
 }

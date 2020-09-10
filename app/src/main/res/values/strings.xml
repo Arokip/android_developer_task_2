@@ -7,4 +7,8 @@
     <string name="ackee_logo_description">Ackee logo</string>
     <string name="time_icon_description">time icon</string>
     <string name="recipe_duration">%1$s min.</string>
+    <string name="large_image_in_recipe_detail">large image in recipe detail</string>
+    <string name="ingredients_title">Ingredience</string>
+    <string name="preparation_title">Příprava jídla</string>
+    <string name="rate_the_recipe_title">Ohodnoť tento recept</string>
 </resources>
