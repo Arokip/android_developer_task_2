@@ -7,9 +7,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import cz.ackee.cookbook.R
+import cz.ackee.cookbook.viewmodels.RecipeListModel
 
 class RecipeListActivity : AppCompatActivity() {
+
+    private lateinit var recipeListModel: RecipeListModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +25,22 @@ class RecipeListActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        recipeListModel = ViewModelProvider(this).get(RecipeListModel::class.java)
+
+        recipeListModel.getAllRecipes()
+
+        recipeListModel.recipes.observe(this, Observer { recipes ->
+
+            if (recipes == null) {
+                println("nullllllll")
+                return@Observer
+            }
+
+            recipes.forEach { recipe ->
+                println(recipe)
+            }
+
+        })
 
     }
 

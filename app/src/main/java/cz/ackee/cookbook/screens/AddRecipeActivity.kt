@@ -34,7 +34,8 @@ class AddRecipeActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_add_recipe) {
-            startActivity(Intent(this, AddRecipeActivity::class.java))
+            startActivity(Intent(this, RecipeDetailActivity::class.java))
+            finish()
             return true
         }
 

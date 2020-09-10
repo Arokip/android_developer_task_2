@@ -1,5 +1,6 @@
 package cz.ackee.cookbook.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -39,6 +40,8 @@ class RecipeDetailActivity : AppCompatActivity() {
         val id = item.itemId
 
         if (id == R.id.action_add_recipe) {
+            startActivity(Intent(this, AddRecipeActivity::class.java))
+            finish()
             return true
         }
 
