@@ -3,7 +3,10 @@ package cz.ackee.cookbook.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cz.ackee.cookbook.R
 import cz.ackee.cookbook.data.Recipe
@@ -24,15 +27,20 @@ class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        when (holder.itemViewType) {
-            0 -> {
-                holder as ViewHolder
-                val recipeItem = recipes[position]
+        holder as ViewHolder
+        val recipeItem = recipes[position]
 
-                holder.recipeName.text = recipeItem.name
-                holder.recipeDuration.text = holder.recipeDuration.context.getString(R.string.recipe_duration, recipeItem.duration)
-            }
+        holder.recipeName.text = recipeItem.name
+
+        holder.recipeScoreLayout.removeAllViews()
+        for (i in 1..(recipeItem.score.toDouble().toInt())) {
+            val imageView = ImageView(holder.recipeScoreLayout.context)
+            imageView.setImageDrawable(ContextCompat.getDrawable(holder.recipeScoreLayout.context, R.drawable.ic_star))
+            holder.recipeScoreLayout.addView(imageView)
         }
+
+        holder.recipeDuration.text = holder.recipeDuration.context.getString(R.string.recipe_duration, recipeItem.duration)
+
     }
 
     override fun getItemCount(): Int {
@@ -43,6 +51,7 @@ class RecipesRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
             RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         internal var recipeName: TextView = itemView.findViewById(R.id.recipeName)
+        internal var recipeScoreLayout: LinearLayout = itemView.findViewById(R.id.recipeScoreLayout)
         internal var recipeDuration: TextView = itemView.findViewById(R.id.recipeDuration)
 
         init {
