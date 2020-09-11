@@ -3,15 +3,12 @@ package cz.ackee.cookbook.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import cz.ackee.cookbook.repository.Repository
 import cz.ackee.cookbook.data.Recipe
+import cz.ackee.cookbook.helper.NetworkHepler
+import cz.ackee.cookbook.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.net.ConnectException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
 
 class RecipeListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: Repository = Repository()
@@ -23,30 +20,10 @@ class RecipeListViewModel(application: Application) : AndroidViewModel(applicati
         val recipeList: List<Recipe>? = try {
             repository.getAllRecipes()
         } catch (e: Exception) {
-            createErrorMessage(e)
+            errorMessage = NetworkHepler.createErrorMessage(e)
             null
         }
         recipes.postValue(recipeList)
-    }
-
-    private fun createErrorMessage(e: Exception) {
-        when (e) {
-            is UnknownHostException -> {
-                errorMessage = "Connection error."
-            }
-            is SocketTimeoutException -> {
-                errorMessage = "Connection error."
-            }
-            is HttpException -> {
-                errorMessage = "Connection error."
-            }
-            is ConnectException -> {
-                errorMessage = "Connection error."
-            }
-            else -> {
-                errorMessage = "Unknown error occurred."
-            }
-        }
     }
 
 }
