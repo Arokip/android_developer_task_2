@@ -7,18 +7,26 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import cz.ackee.cookbook.R
+import cz.ackee.cookbook.databinding.ActivityRecipeDetailBinding
 import cz.ackee.cookbook.viewmodel.RecipeDetailViewModel
+import kotlinx.android.synthetic.main.activity_recipe_detail.*
+
 
 class RecipeDetailActivity : AppCompatActivity() {
 
     private lateinit var recipeDetailViewModel: RecipeDetailViewModel
+
+    private lateinit var binding: ActivityRecipeDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +38,15 @@ class RecipeDetailActivity : AppCompatActivity() {
             statusBarColor = ContextCompat.getColor(context, R.color.colorStatusBarTransparent)
         }
 
-        setContentView(R.layout.activity_recipe_detail)
+        recipeDetailViewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_detail)
+        binding.viewmodel = recipeDetailViewModel
+        binding.lifecycleOwner = this
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        recipeDetailViewModel = ViewModelProvider(this).get(RecipeDetailViewModel::class.java)
 
         val recipeId = intent.getStringExtra(idString)
 
@@ -48,7 +58,14 @@ class RecipeDetailActivity : AppCompatActivity() {
         }
 
         recipeDetailViewModel.recipeDetail.observe(this, Observer { recipeDetail ->
-            // TODO: set ui
+            for (i in 1..(recipeDetail.score.toDouble().toInt())) {
+                val imageView = ImageView(this@RecipeDetailActivity)
+                imageView.setImageDrawable(ContextCompat.getDrawable(this@RecipeDetailActivity, R.drawable.ic_star_white))
+                val layoutParams = LinearLayout.LayoutParams(80, 80)
+                imageView.layoutParams = layoutParams
+                recipeDetailScoreLayout.addView(imageView)
+
+            }
         })
 
     }

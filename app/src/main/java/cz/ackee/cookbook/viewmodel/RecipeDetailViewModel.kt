@@ -3,7 +3,6 @@ package cz.ackee.cookbook.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import cz.ackee.cookbook.data.Recipe
 import cz.ackee.cookbook.data.RecipeDetail
 import cz.ackee.cookbook.repository.Repository
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +29,16 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
         recipeDetail.postValue(recipe)
     }
 
+    fun makeIngredientsString(ingredients: List<String>?): String {
+        return if (ingredients.isNullOrEmpty()) {
+            ""
+        } else {
+            ingredients.joinToString(separator = "\n") { ingredientItem ->
+                "•   ${ingredientItem}"
+            }
+        }
+    }
+
     private fun createErrorMessage(e: Exception) {
         when (e) {
             is UnknownHostException -> {
@@ -39,7 +48,7 @@ class RecipeDetailViewModel(application: Application) : AndroidViewModel(applica
                 errorMessage = "Connection error."
             }
             is HttpException -> {
-                errorMessage = if ((e as HttpException).code() == 404) {
+                errorMessage = if (e.code() == 404) {
                     "Recipe not found"
                 } else {
                     "Connection error."

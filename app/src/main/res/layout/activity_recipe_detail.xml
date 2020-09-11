@@ -1,201 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".activity.RecipeListActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="cz.ackee.cookbook.viewmodel.RecipeDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".activity.RecipeListActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ackeeImage"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/large_image_in_recipe_detail"
-                android:src="@drawable/img_big"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/gradient_transparent_darker"
-                app:layout_constraintBottom_toBottomOf="@id/ackeeImage"
-                app:layout_constraintEnd_toEndOf="@id/ackeeImage"
-                app:layout_constraintStart_toStartOf="@id/ackeeImage"
-                app:layout_constraintTop_toTopOf="@id/ackeeImage" />
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/status_bar_height"
-                android:background="@android:color/transparent"
-                android:theme="@style/Widget.AppTheme.AppBar.White"
-                app:elevation="0dp"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    app:title=" " />
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/large_margin"
-                android:text="name and name"
-                android:textStyle="bold"
-                android:textColor="@color/white_transparent"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@id/recipeDetailScoreLayout"
-                app:layout_constraintStart_toStartOf="@id/ackeeImage" />
-
-            <LinearLayout
-                android:id="@+id/recipeDetailScoreLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/big_margin"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@id/ackeeImage">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_star_white" />
+                    android:id="@+id/ackeeImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/large_image_in_recipe_detail"
+                    android:src="@drawable/img_big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/gradient_transparent_darker"
+                    app:layout_constraintBottom_toBottomOf="@id/ackeeImage"
+                    app:layout_constraintEnd_toEndOf="@id/ackeeImage"
+                    app:layout_constraintStart_toStartOf="@id/ackeeImage"
+                    app:layout_constraintTop_toTopOf="@id/ackeeImage" />
 
-            <ImageView
-                android:id="@+id/recipeDetailDurationIcon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_time"
-                app:tint="@android:color/white"
-                android:layout_marginEnd="@dimen/small_margin"
-                app:layout_constraintBottom_toBottomOf="@id/recipeDetailDuration"
-                app:layout_constraintEnd_toStartOf="@id/recipeDetailDuration"
-                app:layout_constraintTop_toTopOf="@id/recipeDetailDuration" />
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/status_bar_height"
+                    android:background="@android:color/transparent"
+                    android:theme="@style/Widget.AppTheme.AppBar.White"
+                    app:elevation="0dp"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/recipeDetailDuration"
-                android:layout_height="wrap_content"
-                android:maxWidth="120dp"
-                android:layout_width="0dp"
-                android:layout_marginEnd="@dimen/big_margin"
-                android:textColor="@android:color/white"
-                android:ellipsize="middle"
-                android:singleLine="true"
-                android:text="10000000000000000000 min."
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@id/recipeDetailScoreLayout"
-                app:layout_constraintEnd_toEndOf="@id/recipeDetailScoreLayout"
-                app:layout_constraintTop_toTopOf="@id/recipeDetailScoreLayout" />
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginTop="@dimen/big_margin"
-                android:text="desc"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ackeeImage" />
-
-            <TextView
-                android:id="@+id/igredientsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginTop="@dimen/big_margin"
-                android:text="@string/ingredients_title"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description" />
-
-            <TextView
-                android:id="@+id/igredientsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:text="fdsfasdfsad"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/igredientsTitle" />
-
-            <TextView
-                android:id="@+id/preparationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginTop="@dimen/big_margin"
-                android:text="@string/preparation_title"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/igredientsText" />
-
-            <TextView
-                android:id="@+id/preparationText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:text="j\nj\nj\nj\nj\nj\nj\nj"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/preparationTitle" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/big_margin"
-                android:background="@color/colorPrimaryDark"
-                android:orientation="vertical"
-                android:padding="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/preparationText">
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        app:title=" " />
+                </com.google.android.material.appbar.AppBarLayout>
 
                 <TextView
-                    android:id="@+id/rateTheRecipeTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/rate_the_recipe_title"
+                    android:layout_margin="@dimen/large_margin"
+                    android:gravity="start"
+                    android:text="@{viewmodel.recipeDetail.name}"
+                    android:textColor="@color/white_transparent"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/recipeDetailScoreLayout"
+                    app:layout_constraintEnd_toEndOf="@id/ackeeImage"
+                    app:layout_constraintStart_toStartOf="@id/ackeeImage" />
+
+                <LinearLayout
+                    android:id="@+id/recipeDetailScoreLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/big_margin"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    app:layout_constraintBottom_toBottomOf="@id/ackeeImage" />
+
+                <ImageView
+                    android:id="@+id/recipeDetailDurationIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:src="@drawable/ic_time"
+                    app:layout_constraintBottom_toBottomOf="@id/recipeDetailDuration"
+                    app:layout_constraintEnd_toStartOf="@id/recipeDetailDuration"
+                    app:layout_constraintTop_toTopOf="@id/recipeDetailDuration"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/recipeDetailDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/big_margin"
+                    android:ellipsize="marquee"
+                    android:maxWidth="120dp"
+                    android:singleLine="true"
+                    android:text="@{String.format(@string/recipe_duration, viewmodel.recipeDetail.duration)}"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/recipeDetailScoreLayout"
+                    app:layout_constraintEnd_toEndOf="@id/recipeDetailScoreLayout"
+                    app:layout_constraintTop_toTopOf="@id/recipeDetailScoreLayout" />
 
-                <androidx.appcompat.widget.AppCompatRatingBar
+                <TextView
+                    android:id="@+id/recipeDetailInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/small_margin" />
+                    android:layout_marginStart="@dimen/big_margin"
+                    android:layout_marginTop="@dimen/big_margin"
+                    android:text="@{viewmodel.recipeDetail.info}"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ackeeImage" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/igredientsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/big_margin"
+                    android:layout_marginTop="@dimen/big_margin"
+                    android:text="@string/ingredients_title"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipeDetailInfo" />
+
+                <TextView
+                    android:id="@+id/igredientsText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/large_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:gravity="start"
+                    android:text="@{viewmodel.makeIngredientsString(viewmodel.recipeDetail.ingredients)}"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/igredientsTitle" />
+
+                <TextView
+                    android:id="@+id/preparationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/big_margin"
+                    android:layout_marginTop="@dimen/big_margin"
+                    android:text="@string/preparation_title"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/igredientsText" />
+
+                <TextView
+                    android:id="@+id/preparationText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/big_margin"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:gravity="start"
+                    android:text="@{viewmodel.recipeDetail.description}"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/preparationTitle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/big_margin"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="vertical"
+                    android:padding="32dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/preparationText">
+
+                    <TextView
+                        android:id="@+id/rateTheRecipeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/rate_the_recipe_title"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp" />
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/small_margin" />
+
+                </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+        </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
