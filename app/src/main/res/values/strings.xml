@@ -11,4 +11,9 @@
     <string name="ingredients_title">Ingredience</string>
     <string name="preparation_title">Příprava jídla</string>
     <string name="rate_the_recipe_title">Ohodnoť tento recept</string>
+    <string name="recipe_name">Název receptu</string>
+    <string name="recipe_info">Úvodní text</string>
+    <string name="ingredients">Ingredience</string>
+    <string name="add_button_text">+ přidat</string>
+    <string name="process">Postup</string>
 </resources>

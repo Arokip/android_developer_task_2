@@ -10,14 +10,10 @@
             type="cz.ackee.cookbook.viewmodel.RecipeDetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        tools:context=".activity.RecipeListActivity">
-
         <ScrollView
             android:layout_width="match_parent"
+            android:background="@android:color/white"
+            tools:context=".activity.RecipeListActivity"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -213,6 +209,4 @@
 
         </ScrollView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
