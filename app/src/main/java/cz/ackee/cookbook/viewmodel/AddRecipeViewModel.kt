@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class AddRecipeViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: Repository = Repository()
+    private val appContext = application.applicationContext
 
     val recipeDetail: MutableLiveData<RecipeDetail> = MutableLiveData()
     var errorMessage: String? = null
@@ -22,7 +23,7 @@ class AddRecipeViewModel(application: Application) : AndroidViewModel(applicatio
         val recipeDetailResponse: RecipeDetail? = try {
             repository.postNewRecipe(newRecipe)
         } catch (e: Exception) {
-            errorMessage = NetworkHelper.createErrorMessage(e)
+            errorMessage = NetworkHelper.createErrorMessage(appContext, e)
             null
         }
         recipeDetail.postValue(recipeDetailResponse)

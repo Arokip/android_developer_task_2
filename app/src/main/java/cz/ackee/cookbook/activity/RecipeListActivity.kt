@@ -43,21 +43,25 @@ class RecipeListActivity : AppCompatActivity(),
 
         recipeListViewModel.getAllRecipes()
 
-        // TODO: loading, progress bar
-
         recipeListViewModel.recipes.observe(this, Observer { recipes ->
 
             when {
                 recipes == null -> {
+                    errorText.visibility = View.VISIBLE
+                    errorText.text = recipeListViewModel.errorMessage
                     return@Observer
                 }
                 recipes.isEmpty() -> {
+                    errorText.visibility = View.VISIBLE
+                    errorText.text = getString(R.string.no_recipe_available)
                     return@Observer
                 }
                 else -> {
                     adapter.setRecipes(recipes)
                 }
             }
+
+            progressBar.visibility = View.GONE
         })
     }
 

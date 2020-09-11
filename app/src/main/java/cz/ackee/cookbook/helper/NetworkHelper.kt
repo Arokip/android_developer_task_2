@@ -1,5 +1,7 @@
 package cz.ackee.cookbook.helper
 
+import android.content.Context
+import cz.ackee.cookbook.R
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -9,26 +11,26 @@ class NetworkHelper {
 
     companion object {
 
-        fun createErrorMessage(e: Exception): String {
+        fun createErrorMessage(context: Context, e: Exception): String {
             return when (e) {
                 is UnknownHostException -> {
-                    "Connection error."
+                    context.getString(R.string.connection_error)
                 }
                 is SocketTimeoutException -> {
-                    "Connection error."
+                    context.getString(R.string.connection_error)
                 }
                 is HttpException -> {
                     if (e.code() == 404) {
-                        "Recipe not found"
+                        context.getString(R.string.recipe_not_found)
                     } else {
-                        "Connection error."
+                        context.getString(R.string.connection_error)
                     }
                 }
                 is ConnectException -> {
-                    "Connection error."
+                    context.getString(R.string.connection_error)
                 }
                 else -> {
-                    "Unknown error occurred."
+                    context.getString(R.string.unknown_error)
                 }
             }
         }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class RecipeListViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: Repository = Repository()
+    private val appContext = application.applicationContext
 
     val recipes: MutableLiveData<List<Recipe>> = MutableLiveData()
     var errorMessage: String? = null
@@ -20,7 +21,7 @@ class RecipeListViewModel(application: Application) : AndroidViewModel(applicati
         val recipeList: List<Recipe>? = try {
             repository.getAllRecipes()
         } catch (e: Exception) {
-            errorMessage = NetworkHelper.createErrorMessage(e)
+            errorMessage = NetworkHelper.createErrorMessage(appContext, e)
             null
         }
         recipes.postValue(recipeList)

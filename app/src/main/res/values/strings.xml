@@ -20,4 +20,8 @@
     <string name="your_ingredient">Vaše ingredience</string>
     <string name="required_field">Povinné pole</string>
     <string name="must_contain">Musí obsahovat \"ackee\"</string>
+    <string name="no_recipe_available">Žádný recept k dispozici</string>
+    <string name="connection_error">Connection error.</string>
+    <string name="unknown_error">Unknown error occurred.</string>
+    <string name="recipe_not_found">Recipe not found</string>
 </resources>
