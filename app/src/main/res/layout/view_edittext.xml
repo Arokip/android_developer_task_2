@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="@string/your_ingredient"
+    android:imeOptions="actionDone"
+    android:importantForAutofill="no"
+    android:padding="@dimen/small_margin"
+    android:inputType="text"
+    android:background="@drawable/bg_edittext"
+    android:textCursorDrawable="@null"
+    android:textSize="16sp" />

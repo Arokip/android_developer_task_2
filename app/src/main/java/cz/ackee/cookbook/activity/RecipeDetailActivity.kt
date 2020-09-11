@@ -9,7 +9,6 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -20,7 +19,6 @@ import cz.ackee.cookbook.R
 import cz.ackee.cookbook.databinding.ActivityRecipeDetailBinding
 import cz.ackee.cookbook.viewmodel.RecipeDetailViewModel
 import kotlinx.android.synthetic.main.activity_recipe_detail.*
-
 
 class RecipeDetailActivity : AppCompatActivity() {
 
@@ -52,7 +50,6 @@ class RecipeDetailActivity : AppCompatActivity() {
 
         if (recipeId == null) {
             finish()
-            Toast.makeText(this, recipeDetailViewModel.errorMessage, Toast.LENGTH_LONG).show()
         } else {
             recipeDetailViewModel.getRecipeDetailById(recipeId)
         }

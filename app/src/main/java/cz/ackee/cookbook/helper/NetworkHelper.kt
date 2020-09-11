@@ -5,7 +5,7 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-class NetworkHepler {
+class NetworkHelper {
 
     companion object {
 

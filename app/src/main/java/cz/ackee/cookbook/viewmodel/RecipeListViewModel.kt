@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import cz.ackee.cookbook.data.Recipe
-import cz.ackee.cookbook.helper.NetworkHepler
+import cz.ackee.cookbook.helper.NetworkHelper
 import cz.ackee.cookbook.repository.Repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -20,7 +20,7 @@ class RecipeListViewModel(application: Application) : AndroidViewModel(applicati
         val recipeList: List<Recipe>? = try {
             repository.getAllRecipes()
         } catch (e: Exception) {
-            errorMessage = NetworkHepler.createErrorMessage(e)
+            errorMessage = NetworkHelper.createErrorMessage(e)
             null
         }
         recipes.postValue(recipeList)

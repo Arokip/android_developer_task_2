@@ -43,6 +43,8 @@ class RecipeListActivity : AppCompatActivity(),
 
         recipeListViewModel.getAllRecipes()
 
+        // TODO: loading, progress bar
+
         recipeListViewModel.recipes.observe(this, Observer { recipes ->
 
             when {

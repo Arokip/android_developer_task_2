@@ -17,4 +17,7 @@
     <string name="add_button_text">+ přidat</string>
     <string name="process">Postup</string>
     <string name="time">Čas</string>
+    <string name="your_ingredient">Vaše ingredience</string>
+    <string name="required_field">Povinné pole</string>
+    <string name="must_contain">Musí obsahovat \"ackee\"</string>
 </resources>

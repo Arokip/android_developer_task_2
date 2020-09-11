@@ -5,8 +5,7 @@ import cz.ackee.cookbook.data.RecipeDetail
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface CookbookApi {
@@ -16,6 +15,16 @@ interface CookbookApi {
 
     @GET("recipes/{id}")
     suspend fun getRecipeDetailById(@Path("id") id: String): RecipeDetail
+
+    @FormUrlEncoded
+    @POST("recipes")
+    suspend fun postNewRecipe(
+            @Field("name") name: String,
+            @Field("description") description: String,
+            @Field("ingredients") ingredients: List<String>,
+            @Field("duration") duration: Long,
+            @Field("info") info: String
+    ): RecipeDetail
 
     companion object {
 

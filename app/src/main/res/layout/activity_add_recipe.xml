@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginTop="@dimen/big_margin"
             android:layout_marginEnd="@dimen/large_margin"
             android:background="@android:color/white"
             android:focusable="true"
@@ -64,12 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/small_margin"
             android:layout_marginEnd="@dimen/large_margin"
             android:background="@android:color/white"
             android:focusable="true"
             android:focusableInTouchMode="true"
-
             android:textColorHint="@color/dark_grey"
             app:boxStrokeColor="@color/colorPrimary"
             app:errorEnabled="true"
@@ -81,6 +79,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/recipeInfoEditText"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:hint="@string/recipe_info"
@@ -109,7 +108,7 @@
 
         <LinearLayout
             android:id="@+id/ingredientsListLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
             android:layout_marginTop="@dimen/margin"
@@ -176,7 +175,6 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/large_margin"
-            android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/large_margin"
             android:background="@android:color/white"
             android:focusable="true"
@@ -195,7 +193,7 @@
                 android:background="@android:color/white"
                 android:hint="@string/time"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
